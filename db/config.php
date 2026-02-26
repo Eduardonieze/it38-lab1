@@ -1,6 +1,6 @@
 <?php
 $host = 'localhost'; // or your database host
-$dbname = 'it38c-2';
+$dbname = 'login-logs(1)';
 $username = 'root';
 $password = '';
 

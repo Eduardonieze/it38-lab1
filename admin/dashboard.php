@@ -83,6 +83,22 @@ if ($stmt = $pdo->prepare($sql)) {
             margin-left: 2rem;
             text-align: center;
         }
+
+        @media print {
+    .navbar, .btn {
+        display: none; /* Hide navbar and buttons when printing */
+    }
+    body {
+        margin: 10px;
+    }
+    .card {
+        page-break-inside: avoid; /* Keep cards from breaking across pages */
+    }
+    table {
+        page-break-inside: auto;
+        width: 100%;
+    }
+}
     </style>
 </head>
 <body>
@@ -202,7 +218,9 @@ if ($stmt = $pdo->prepare($sql)) {
                 <?php endforeach; ?>
             </tbody>
         </table>
-        <button class="btn btn-primary" onclick="printToPDF()">Print to PDF</button>
+        <div class="mb-3" style="margin-top: 20px;">
+    <button class="btn btn-primary" onclick="printToPDF()">Save as PDF</button>
+    <button class="btn btn-secondary" onclick="printPage()">Print</button>
     </div>
     <!--End Dashboard-->             
 
@@ -244,6 +262,11 @@ if ($stmt = $pdo->prepare($sql)) {
 
         return 'Just now';
     }
+
+    // Opens browser print dialog
+function printPage() {
+    window.print();
+}
 
     // Apply the time elapsed to the table rows
     window.onload = function() {
